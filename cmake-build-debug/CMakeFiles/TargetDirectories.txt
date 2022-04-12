@@ -1,3 +1,3 @@
-C:/All Alex Files/Code/UF_DataStructures_HW/ArtChart/cmake-build-debug/CMakeFiles/ArtChart.dir
-C:/All Alex Files/Code/UF_DataStructures_HW/ArtChart/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/All Alex Files/Code/UF_DataStructures_HW/ArtChart/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/All Alex Files/Code/UF_DataStructures_HW/Art-Chart/cmake-build-debug/CMakeFiles/ArtChart.dir
+C:/All Alex Files/Code/UF_DataStructures_HW/Art-Chart/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/All Alex Files/Code/UF_DataStructures_HW/Art-Chart/cmake-build-debug/CMakeFiles/rebuild_cache.dir
