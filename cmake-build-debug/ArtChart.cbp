@@ -82,7 +82,31 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/All Alex Files/Code/UF_DataStructures_HW/Art-Chart/ArtChart.cpp">
+			<Option target="ArtChart"/>
+		</Unit>
+		<Unit filename="C:/All Alex Files/Code/UF_DataStructures_HW/Art-Chart/ArtChart.h">
+			<Option target="ArtChart"/>
+		</Unit>
+		<Unit filename="C:/All Alex Files/Code/UF_DataStructures_HW/Art-Chart/ArtData.h">
+			<Option target="ArtChart"/>
+		</Unit>
+		<Unit filename="C:/All Alex Files/Code/UF_DataStructures_HW/Art-Chart/ArtDisplay.cpp">
+			<Option target="ArtChart"/>
+		</Unit>
+		<Unit filename="C:/All Alex Files/Code/UF_DataStructures_HW/Art-Chart/ArtDisplay.h">
+			<Option target="ArtChart"/>
+		</Unit>
+		<Unit filename="C:/All Alex Files/Code/UF_DataStructures_HW/Art-Chart/ArtReader.cpp">
+			<Option target="ArtChart"/>
+		</Unit>
+		<Unit filename="C:/All Alex Files/Code/UF_DataStructures_HW/Art-Chart/ArtReader.h">
+			<Option target="ArtChart"/>
+		</Unit>
 		<Unit filename="C:/All Alex Files/Code/UF_DataStructures_HW/Art-Chart/DataStructure1_Tests.h">
+			<Option target="ArtChart"/>
+		</Unit>
+		<Unit filename="C:/All Alex Files/Code/UF_DataStructures_HW/Art-Chart/QueryData.h">
 			<Option target="ArtChart"/>
 		</Unit>
 		<Unit filename="C:/All Alex Files/Code/UF_DataStructures_HW/Art-Chart/main.cpp">

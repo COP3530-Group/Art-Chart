@@ -128,6 +128,78 @@ ArtChart/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ArtChart.dir\build.make CMakeFiles/ArtChart.dir/build
 .PHONY : ArtChart/fast
 
+ArtChart.obj: ArtChart.cpp.obj
+.PHONY : ArtChart.obj
+
+# target to build an object file
+ArtChart.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ArtChart.dir\build.make CMakeFiles/ArtChart.dir/ArtChart.cpp.obj
+.PHONY : ArtChart.cpp.obj
+
+ArtChart.i: ArtChart.cpp.i
+.PHONY : ArtChart.i
+
+# target to preprocess a source file
+ArtChart.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ArtChart.dir\build.make CMakeFiles/ArtChart.dir/ArtChart.cpp.i
+.PHONY : ArtChart.cpp.i
+
+ArtChart.s: ArtChart.cpp.s
+.PHONY : ArtChart.s
+
+# target to generate assembly for a file
+ArtChart.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ArtChart.dir\build.make CMakeFiles/ArtChart.dir/ArtChart.cpp.s
+.PHONY : ArtChart.cpp.s
+
+ArtDisplay.obj: ArtDisplay.cpp.obj
+.PHONY : ArtDisplay.obj
+
+# target to build an object file
+ArtDisplay.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ArtChart.dir\build.make CMakeFiles/ArtChart.dir/ArtDisplay.cpp.obj
+.PHONY : ArtDisplay.cpp.obj
+
+ArtDisplay.i: ArtDisplay.cpp.i
+.PHONY : ArtDisplay.i
+
+# target to preprocess a source file
+ArtDisplay.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ArtChart.dir\build.make CMakeFiles/ArtChart.dir/ArtDisplay.cpp.i
+.PHONY : ArtDisplay.cpp.i
+
+ArtDisplay.s: ArtDisplay.cpp.s
+.PHONY : ArtDisplay.s
+
+# target to generate assembly for a file
+ArtDisplay.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ArtChart.dir\build.make CMakeFiles/ArtChart.dir/ArtDisplay.cpp.s
+.PHONY : ArtDisplay.cpp.s
+
+ArtReader.obj: ArtReader.cpp.obj
+.PHONY : ArtReader.obj
+
+# target to build an object file
+ArtReader.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ArtChart.dir\build.make CMakeFiles/ArtChart.dir/ArtReader.cpp.obj
+.PHONY : ArtReader.cpp.obj
+
+ArtReader.i: ArtReader.cpp.i
+.PHONY : ArtReader.i
+
+# target to preprocess a source file
+ArtReader.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ArtChart.dir\build.make CMakeFiles/ArtChart.dir/ArtReader.cpp.i
+.PHONY : ArtReader.cpp.i
+
+ArtReader.s: ArtReader.cpp.s
+.PHONY : ArtReader.s
+
+# target to generate assembly for a file
+ArtReader.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ArtChart.dir\build.make CMakeFiles/ArtChart.dir/ArtReader.cpp.s
+.PHONY : ArtReader.cpp.s
+
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
@@ -161,6 +233,15 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... ArtChart
+	@echo ... ArtChart.obj
+	@echo ... ArtChart.i
+	@echo ... ArtChart.s
+	@echo ... ArtDisplay.obj
+	@echo ... ArtDisplay.i
+	@echo ... ArtDisplay.s
+	@echo ... ArtReader.obj
+	@echo ... ArtReader.i
+	@echo ... ArtReader.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
