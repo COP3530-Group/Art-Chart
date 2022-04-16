@@ -4,14 +4,7 @@
 #include <iostream>
 #include "Piece.h"
 
-std::vector<Piece> parse_dataset()
-{
-	std::vector<Piece> gallery;
-	// TODO
-	return gallery;
-}
-
-std::vector<Piece> parse_dataset(int count)
+std::vector<Piece> parse_dataset(int count = 600000)
 {
 	int i, iter, index, unknown_count, quote_count, true_length, finished;
 	std::string in, temp, piece, period, artist, medium;
@@ -27,6 +20,9 @@ std::vector<Piece> parse_dataset(int count)
 		quote_count = 0;
 		true_length = 0;
 		unknown_count = 0;
+		
+		if (in.length() < 70 || i == 439647) continue;		
+		if (in.at(0) == '\"' && in.at(in.length()-1) == '\"' || in.at(0) == '(' && in.at(in.length()-1) == ')' ) continue;
 		
 		for (int j = 0; j < in.length(); j++) {
 			if (in.at(j) == '\"') quote_count++;
