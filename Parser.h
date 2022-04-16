@@ -2,14 +2,17 @@
 #include <fstream> 
 #include <vector>
 #include <iostream>
+#include <map>
 #include "Piece.h"
 
-std::vector<Piece> parse_dataset(int count = 600000)
+std::pair<std::vector<Piece>, std::map<std::string, int>> parse_dataset(int count = 600000)
 {
 	int i, iter, index, unknown_count, quote_count, true_length, finished;
 	std::string in, temp, piece, period, artist, medium;
 	std::ifstream dataset;
+	
 	std::vector<Piece> gallery;
+	std::map<std::string, int> periods;
 	
 	dataset.open("MetObjects.txt");
 	getline(dataset, in); // get rid of first line which is information about the following rows of data
@@ -21,13 +24,6 @@ std::vector<Piece> parse_dataset(int count = 600000)
 		true_length = 0;
 		unknown_count = 0;
 		
-		if (in.length() < 70 || i == 439647) continue;		
-		if (in.at(0) == '\"' && in.at(in.length()-1) == '\"' || in.at(0) == '(' && in.at(in.length()-1) == ')' ) continue;
-		
-		for (int j = 0; j < in.length(); j++) {
-			if (in.at(j) == '\"') quote_count++;
-			if (in.at(j) != '\"' && in.at(j) != ' ') true_length++;
-		}
 		
 		/*
 			Some rationalization of the following:
@@ -36,14 +32,21 @@ std::vector<Piece> parse_dataset(int count = 600000)
 				3. Some of them are so short they can't possibly have all of the required information		
 		*/
 		
+		if (in.length() < 70 || i == 439647) continue;		
+		if (in.at(0) == '\"' && in.at(in.length()-1) == '\"' || in.at(0) == '(' && in.at(in.length()-1) == ')' ) continue;
+		
+		for (int j = 0; j < in.length(); j++) {
+			if (in.at(j) == '\"') quote_count++;
+			if (in.at(j) != '\"' && in.at(j) != ' ') true_length++;
+		}
+	
 		if (quote_count % 2 == 1 || quote_count > 6 || true_length < 70) continue;
 		
-		std::cout << "Line " << i << ":\t" << in << std::endl;
+		// std::cout << "Line " << i << ":\t" << in << std::endl;
 		iter = 1;
 		
 		while (in.length() > 0)
 		{		
-			
 			index = 0;
 			while (in.at(index) != ',' && index < in.length()-1) 
 			{
@@ -66,31 +69,25 @@ std::vector<Piece> parse_dataset(int count = 600000)
 			in = in.substr(index+1, in.length()-index);
 			//std::cout << "iteration" << iter << ":\t" << temp << "\t" << in << std::endl;
 			
-			if (temp == "" && (iter == 10 || iter == 12 || iter == 19 || iter == 31 || iter == 32)) {
-				temp = "unknown"; 
-				unknown_count++;
-			}
+			if (temp == "") temp = "unknown";
+			if (temp == "unknown" && (iter == 10 || iter == 12 || iter == 19 || iter == 31 || iter == 32)) unknown_count++;
+	
 			
 			switch (iter)
 			{
 				case 10:
-					std::cout << "Piece name: " << temp << std::endl;
 					piece = temp;
 					break;
 				case 12:
-					std::cout << "Period: " << temp << std::endl;
 					period = temp;
 					break;
 				case 19:
-					std::cout << "Artist name: " << temp << std::endl;
 					artist = temp;
 					break;
 				case 31:
-					std::cout << "Year finished: " << temp << std::endl;
 					finished = std::stoi(temp);
 					break;
 				case 32:
-					std::cout << "Medium: " << temp << std::endl;
 					medium = temp;
 					break;
 				default:
@@ -101,17 +98,24 @@ std::vector<Piece> parse_dataset(int count = 600000)
 			iter++;
 		}
 		
-	
-		
-		
-		
-		
 		// check if any unknown, continue
-		std::cout << "Unknown count: " << unknown_count << std::endl;
-		if(unknown_count < 4) gallery.push_back(Piece(piece, period, artist, medium, finished));
-		std::cout << std::endl;
+		// std::cout << "Unknown count: " << unknown_count << std::endl;	
+		// std::cout << std::endl;
+		
+		if (unknown_count < 4) {
+			/*
+			std::cout << "Piece name: " << piece << std::endl;
+			std::cout << "Period: " << period << std::endl;
+			std::cout << "Artist name: " << artist << std::endl;
+			std::cout << "Year finished: " << finished << std::endl;
+			std::cout << "Medium: " << medium << std::endl << std::endl;
+			*/
+			
+			gallery.push_back(Piece(piece, period, artist, medium, finished));
+			periods[period] = finished;
+		}
 		
 	}		
 	dataset.close();
-	return gallery;
+	return {gallery, periods};
 }
