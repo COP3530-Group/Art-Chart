@@ -176,29 +176,29 @@ ArtDisplay.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ArtChart.dir\build.make CMakeFiles/ArtChart.dir/ArtDisplay.cpp.s
 .PHONY : ArtDisplay.cpp.s
 
-ArtReader.obj: ArtReader.cpp.obj
-.PHONY : ArtReader.obj
+HeapSort.obj: HeapSort.cpp.obj
+.PHONY : HeapSort.obj
 
 # target to build an object file
-ArtReader.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ArtChart.dir\build.make CMakeFiles/ArtChart.dir/ArtReader.cpp.obj
-.PHONY : ArtReader.cpp.obj
+HeapSort.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ArtChart.dir\build.make CMakeFiles/ArtChart.dir/HeapSort.cpp.obj
+.PHONY : HeapSort.cpp.obj
 
-ArtReader.i: ArtReader.cpp.i
-.PHONY : ArtReader.i
+HeapSort.i: HeapSort.cpp.i
+.PHONY : HeapSort.i
 
 # target to preprocess a source file
-ArtReader.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ArtChart.dir\build.make CMakeFiles/ArtChart.dir/ArtReader.cpp.i
-.PHONY : ArtReader.cpp.i
+HeapSort.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ArtChart.dir\build.make CMakeFiles/ArtChart.dir/HeapSort.cpp.i
+.PHONY : HeapSort.cpp.i
 
-ArtReader.s: ArtReader.cpp.s
-.PHONY : ArtReader.s
+HeapSort.s: HeapSort.cpp.s
+.PHONY : HeapSort.s
 
 # target to generate assembly for a file
-ArtReader.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ArtChart.dir\build.make CMakeFiles/ArtChart.dir/ArtReader.cpp.s
-.PHONY : ArtReader.cpp.s
+HeapSort.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ArtChart.dir\build.make CMakeFiles/ArtChart.dir/HeapSort.cpp.s
+.PHONY : HeapSort.cpp.s
 
 main.obj: main.cpp.obj
 .PHONY : main.obj
@@ -239,9 +239,9 @@ help:
 	@echo ... ArtDisplay.obj
 	@echo ... ArtDisplay.i
 	@echo ... ArtDisplay.s
-	@echo ... ArtReader.obj
-	@echo ... ArtReader.i
-	@echo ... ArtReader.s
+	@echo ... HeapSort.obj
+	@echo ... HeapSort.i
+	@echo ... HeapSort.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
