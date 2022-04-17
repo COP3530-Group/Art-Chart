@@ -1,6 +1,6 @@
 #include <chrono>
 #include "Parser.h"
-//#include "SFML/Graphics.hpp"
+#include "SFML/Graphics.hpp"
 
 using namespace std;
 

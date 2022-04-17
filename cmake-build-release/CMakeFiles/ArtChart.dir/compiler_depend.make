@@ -7,9 +7,6 @@ CMakeFiles/ArtChart.dir/ArtChart.cpp.obj: ../ArtChart.cpp \
 CMakeFiles/ArtChart.dir/ArtDisplay.cpp.obj: ../ArtDisplay.cpp \
   ../ArtDisplay.h
 
-CMakeFiles/ArtChart.dir/ArtReader.cpp.obj: ../ArtReader.cpp \
-  ../ArtReader.h
-
 CMakeFiles/ArtChart.dir/main.cpp.obj: ../main.cpp \
   C:/Program\ Files/JetBrains/CLion\ 2021.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/chrono \
   C:/Program\ Files/JetBrains/CLion\ 2021.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ratio \
@@ -340,23 +337,17 @@ C:/Program\ Files/JetBrains/CLion\ 2021.3.3/bin/mingw/x86_64-w64-mingw32/include
 
 C:/Program\ Files/JetBrains/CLion\ 2021.3.3/bin/mingw/x86_64-w64-mingw32/include/sec_api/wchar_s.h:
 
-C:/Program\ Files/JetBrains/CLion\ 2021.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/fstream.tcc:
-
-../ArtReader.cpp:
-
-C:/Program\ Files/JetBrains/CLion\ 2021.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/hashtable_policy.h:
-
-C:/Program\ Files/JetBrains/CLion\ 2021.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/type_traits:
-
-../ArtReader.h:
-
 ../main.cpp:
 
 C:/Program\ Files/JetBrains/CLion\ 2021.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/atomic_futex.h:
 
+C:/Program\ Files/JetBrains/CLion\ 2021.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ratio:
+
 C:/Program\ Files/JetBrains/CLion\ 2021.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/chrono:
 
-C:/Program\ Files/JetBrains/CLion\ 2021.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ratio:
+C:/Program\ Files/JetBrains/CLion\ 2021.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/hashtable_policy.h:
+
+C:/Program\ Files/JetBrains/CLion\ 2021.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/type_traits:
 
 C:/Program\ Files/JetBrains/CLion\ 2021.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/fstream:
 
@@ -681,6 +672,8 @@ C:/Program\ Files/JetBrains/CLion\ 2021.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32
 C:/Program\ Files/JetBrains/CLion\ 2021.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/istream.tcc:
 
 C:/Program\ Files/JetBrains/CLion\ 2021.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/basic_file.h:
+
+C:/Program\ Files/JetBrains/CLion\ 2021.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/fstream.tcc:
 
 C:/Program\ Files/JetBrains/CLion\ 2021.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_vector.h:
 

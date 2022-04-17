@@ -94,12 +94,6 @@
 		<Unit filename="C:/All Alex Files/Code/UF_DataStructures_HW/Art-Chart/ArtDisplay.h">
 			<Option target="ArtChart"/>
 		</Unit>
-		<Unit filename="C:/All Alex Files/Code/UF_DataStructures_HW/Art-Chart/ArtReader.cpp">
-			<Option target="ArtChart"/>
-		</Unit>
-		<Unit filename="C:/All Alex Files/Code/UF_DataStructures_HW/Art-Chart/ArtReader.h">
-			<Option target="ArtChart"/>
-		</Unit>
 		<Unit filename="C:/All Alex Files/Code/UF_DataStructures_HW/Art-Chart/DataStructure1_Tests.h">
 			<Option target="ArtChart"/>
 		</Unit>
@@ -107,6 +101,12 @@
 			<Option target="ArtChart"/>
 		</Unit>
 		<Unit filename="C:/All Alex Files/Code/UF_DataStructures_HW/Art-Chart/main.cpp">
+			<Option target="ArtChart"/>
+		</Unit>
+		<Unit filename="C:/All Alex Files/Code/UF_DataStructures_HW/Art-Chart/radixSort.h">
+			<Option target="ArtChart"/>
+		</Unit>
+		<Unit filename="C:/All Alex Files/Code/UF_DataStructures_HW/Art-Chart/sortByRelevance.h">
 			<Option target="ArtChart"/>
 		</Unit>
 		<Unit filename="C:/All Alex Files/Code/UF_DataStructures_HW/Art-Chart/CMakeLists.txt">
