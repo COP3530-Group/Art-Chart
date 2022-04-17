@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <iostream>
+#include <vector>
 
 #define NAME_WEIGHT 1
 #define PERIOD_WEIGHT 1
@@ -19,10 +21,16 @@ class Piece
 		
 		int value; // What it will be sorted by for each algorithm
 		
+		Piece();
 		Piece(std::string _time_period, std::string _medium, std::string _artist_name, std::string _piece_name, int _year_finished);	
 		void Value_gen(); // tbd
 		void print();
 };
+
+Piece::Piece()
+{
+	Value_gen();
+}
 
 Piece::Piece(std::string _piece_name, std::string _time_period, std::string _artist_name, std::string _medium, int _year_finished) 
 {
