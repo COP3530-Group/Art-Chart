@@ -18,7 +18,7 @@ int binarySearch(Piece piece, std::vector<Piece> list, int min, int max){
 
     if (list[mid].value > piece.value) return binarySearch(piece, list, min, mid-1);
 
-    return binarySearch(piece.value, list, mid+1, max);
+    return binarySearch(piece, list, mid+1, max);
 }
 
 int dist(int a, int b){
@@ -27,13 +27,13 @@ int dist(int a, int b){
     return b-a;
 }
 
-std::vector<int> sortByRelevance(Piece piece, std::vector<Piece>& list){
+std::vector<Piece> sortByRelevance(Piece piece, std::vector<Piece>& list){
     int index = binarySearch(piece, list, 0, list.size());
 
     int left = index-1;
     int right = index+1;
 
-    std::vector<Piece> result; result.push_back(list[index].value);
+    std::vector<Piece> result; result.push_back(list[index]);
 
     while (true){
         bool canLeft = left >= 0;

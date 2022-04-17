@@ -2,7 +2,8 @@
 #include "Parser.h"
 #include "SFML/Graphics.hpp"
 #include "RadixSort.h"
-#include "HeapSort.h"
+// #include "HeapSort.h"
+#include "sortByRelevance.h"
 
 using namespace std;
 
@@ -19,7 +20,6 @@ struct output_group
 void GUI(vector<Piece> & gallery);
 void init_result(output_group& text, int res, sf::Font& font);
 int which_selected(int x, int y, int curr);
-vector<Piece> search_gallery(vector<Piece>& gallery, int value);
 
 int main(int argc, char **argv)
 {
@@ -36,7 +36,7 @@ int main(int argc, char **argv)
 	auto rstop = std::chrono::high_resolution_clock::now();
 	auto rduration = std::chrono::duration_cast<std::chrono::microseconds>(rstop-rstart);
 
-
+	/*
 	// Heap sort
 	auto hstart = std::chrono::high_resolution_clock::now();
 	gallery2 = heap_sort(gallery2);
@@ -54,10 +54,13 @@ int main(int argc, char **argv)
 
 	auto hstop = std::chrono::high_resolution_clock::now();
 	auto hduration = std::chrono::duration_cast<std::chrono::microseconds>(hstop-hstart);
-
+	*/
 	cout << gallery.size() << " elements sorted in " << rduration.count() << " microseconds using radix sort" << endl;
-	cout << gallery2.size() << " elements sorted in " << hduration.count() << " microseconds using heap sort" << endl;
+	// cout << gallery2.size() << " elements sorted in " << hduration.count() << " microseconds using heap sort" << endl;
 	
+	
+
+
 	GUI(gallery);
 
     return 0;
@@ -249,20 +252,23 @@ void GUI(vector<Piece> & gallery)
 				// Using the search parameters, make an object with them to generate the corresponding
 				Piece p(user_input[0].toAnsiString(), user_input[1].toAnsiString(), user_input[2].toAnsiString(), user_input[4].toAnsiString(), stoi(user_input[3].toAnsiString()));
 
-				vector<Piece> result = search_gallery(gallery, p.value);
+				vector<Piece> relevant = sortByRelevance(p, gallery);
 
 				// Update each output field with the corresponding data from result
 				for (i = 0; i < 5; i++)
 				{
-					results[i].artist_name.setString("Artist Name: " + result[i].artist_name);
-					results[i].piece_name.setString("Piece Name: " + result[i].piece_name);
-					results[i].period.setString("Period: " + result[i].time_period);
-					results[i].completed.setString("Year Completed: " + to_string(result[i].year_finished));
-					results[i].medium.setString("Medium: " + result[i].medium);
+					results[i].artist_name.setString("Artist Name: " + relevant[i].artist_name);
+					results[i].piece_name.setString("Piece Name: " + relevant[i].piece_name);
+					results[i].period.setString("Period: " + relevant[i].time_period);
+					results[i].completed.setString("Year Completed: " + to_string(relevant[i].year_finished));
+					results[i].medium.setString("Medium: " + relevant[i].medium);
 				}
 
 			}
 			search_clicked = false;
+
+			
+
 		}
 
 		// Line partitions for formatting
@@ -364,25 +370,4 @@ int which_selected(int x, int y, int curr)
 	}
 	
 	return curr;
-}
-
-vector<Piece> search_gallery(vector<Piece>& gallery, int _value)
-{
-	// Searches gallery for _value, returns the result and 2 neighbors in each direction
-
-	vector<Piece> out;
-
-	for (int i = 0; i < gallery.size(); i++)
-	{
-		if (gallery[i].value == _value)
-		{
-			out.push_back(gallery[i]);
-			out.push_back(gallery[i-1]);
-			out.push_back(gallery[i-2]);
-			out.push_back(gallery[i+1]);
-			out.push_back(gallery[i+2]);
-		}
-	}
-
-	return out;
 }

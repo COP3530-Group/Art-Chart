@@ -2,17 +2,15 @@
 #include <fstream> 
 #include <vector>
 #include <iostream>
-#include <map>
 #include "Piece.h"
 
-std::pair<std::vector<Piece>, std::map<std::string, int>> parse_dataset(int count = 600000)
+std::vector<Piece> parse_dataset(int count)
 {
 	int i, iter, index, unknown_count, quote_count, true_length, finished;
 	std::string in, temp, piece, period, artist, medium;
 	std::ifstream dataset;
 	
 	std::vector<Piece> gallery;
-	std::map<std::string, int> periods;
 	
 	dataset.open("MetObjects.txt");
 	std::getline(dataset, in); // get rid of first line which is information about the following rows of data
@@ -42,7 +40,6 @@ std::pair<std::vector<Piece>, std::map<std::string, int>> parse_dataset(int coun
 	
 		if (quote_count % 2 == 1 || quote_count > 6 || true_length < 70) continue;
 		
-		// std::cout << "Line " << i << ":\t" << in << std::endl;
 		iter = 1;
 		
 		while (in.length() > 0)
@@ -50,7 +47,7 @@ std::pair<std::vector<Piece>, std::map<std::string, int>> parse_dataset(int coun
 			index = 0;
 			while (in.at(index) != ',' && index < (int)in.length()-1) 
 			{
-				if (in.at(index) == '\"') // need to look for next quote then comma
+				if (in.at(index) == '\"')
 				{
 					index++;
 					while (in.at(index) != '\"')
@@ -67,8 +64,7 @@ std::pair<std::vector<Piece>, std::map<std::string, int>> parse_dataset(int coun
 				temp = in;
 			
 			in = in.substr(index+1, in.length()-index);
-			//std::cout << "iteration" << iter << ":\t" << temp << "\t" << in << std::endl;
-			
+
 			if (temp == "") temp = "unknown";
 			if (temp == "unknown" && (iter == 10 || iter == 12 || iter == 19 || iter == 31 || iter == 32)) unknown_count++;
 			
@@ -92,29 +88,13 @@ std::pair<std::vector<Piece>, std::map<std::string, int>> parse_dataset(int coun
 				default:
 					break;
 			}
-			
 			if (iter == 32) break;
 			iter++;
 		}
-		
-		// check if any unknown, continue
-		// std::cout << "Unknown count: " << unknown_count << std::endl;	
-		// std::cout << std::endl;
-		
-		if (unknown_count < 4) {
-			/*
-			std::cout << "Piece name: " << piece << std::endl;
-			std::cout << "Period: " << period << std::endl;
-			std::cout << "Artist name: " << artist << std::endl;
-			std::cout << "Year finished: " << finished << std::endl;
-			std::cout << "Medium: " << medium << std::endl << std::endl;
-			*/
-			
+
+		if (unknown_count < 4)
 			gallery.push_back(Piece(piece, period, artist, medium, finished));
-			periods[period] = finished;
-		}
-		
 	}		
 	dataset.close();
-	return {gallery, periods};
+	return gallery;
 }
