@@ -1,6 +1,6 @@
 #include <chrono>
 #include "Parser.h"
-#include "SFML/Graphics.hpp"
+//#include "SFML/Graphics.hpp"
 
 using namespace std;
 
@@ -12,6 +12,7 @@ struct output_group {
 	sf::Text completed;
 	sf::Text medium;
 };
+
 
 void GUI(vector<Piece> & gallery, vector<Piece> & gallery2);
 void init_result(output_group& text, int res, sf::Font& font);

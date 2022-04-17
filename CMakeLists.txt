@@ -3,4 +3,4 @@ project(ArtChart)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(ArtChart main.cpp DataStructure1_Tests.h ArtChart.cpp ArtChart.h ArtReader.cpp ArtReader.h ArtDisplay.cpp ArtDisplay.h ArtData.h QueryData.h)
+add_executable(ArtChart main.cpp DataStructure1_Tests.h ArtChart.cpp ArtChart.h ArtReader.cpp ArtReader.h ArtDisplay.cpp ArtDisplay.h QueryData.h)

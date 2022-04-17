@@ -88,9 +88,6 @@
 		<Unit filename="C:/All Alex Files/Code/UF_DataStructures_HW/Art-Chart/ArtChart.h">
 			<Option target="ArtChart"/>
 		</Unit>
-		<Unit filename="C:/All Alex Files/Code/UF_DataStructures_HW/Art-Chart/ArtData.h">
-			<Option target="ArtChart"/>
-		</Unit>
 		<Unit filename="C:/All Alex Files/Code/UF_DataStructures_HW/Art-Chart/ArtDisplay.cpp">
 			<Option target="ArtChart"/>
 		</Unit>
