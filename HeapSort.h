@@ -6,40 +6,37 @@
 
 using namespace std;
 
-bool heapify_down(int i, std::vector<Piece>& collection)
+void heapify_down(int i, std::vector<Piece>& collection)
 {
-    bool swapped = false;
-
+    int parentIndex = i;
     int lChildIndex = 2*i + 1;
     int rChildIndex = 2*i + 2;
 
     while(lChildIndex < collection.size())
     {
-        int greaterIndex = 0;
+        int greaterChildIndex;
 
         if(rChildIndex >= collection.size())
-            greaterIndex = lChildIndex;
+            greaterChildIndex = lChildIndex;
         else if(collection[lChildIndex].value > collection[rChildIndex].value)
-            greaterIndex = lChildIndex;
+            greaterChildIndex = lChildIndex;
         else
-            greaterIndex = rChildIndex;
+            greaterChildIndex = rChildIndex;
 
-        if(collection[i].value < collection[greaterIndex].value)
+        if(collection[parentIndex].value < collection[greaterChildIndex].value)
         {
-            swapped = true;
-            auto temp = collection[greaterIndex];
-            collection[greaterIndex] = collection[i];
-            collection[i] = temp;
+            auto swap = collection[greaterChildIndex];
+            collection[greaterChildIndex] = collection[parentIndex];
+            collection[parentIndex] = swap;
 
-            i = greaterIndex;
+            //Recalculate
+            parentIndex = greaterChildIndex;
             lChildIndex = 2*i + 1;
             rChildIndex = 2*i + 2;
         }
         else
-            return swapped;
+            return;
     }
-
-    return swapped;
 }
 
 std::vector<Piece> heap_sort(std::vector<Piece> gallery)
@@ -59,13 +56,21 @@ std::vector<Piece> heap_sort(std::vector<Piece> gallery)
         heapify_down(0, gallery);
     }
 
+    vector<Piece> sortedGallery(gallery.size());
 
-    for(auto num : gallery)
+    for(int i = 0; i < gallery.size(); i++)
     {
-        num.print();
+        sortedGallery.push_back(gallery[0]);
+
+        //Bring last element to front
+        int lastIndex = gallery.size() - 1;
+        gallery[0] = gallery[lastIndex];
+        gallery.pop_back();
+
+        heapify_down(0, gallery);
     }
 
-    return gallery;
+    return sortedGallery;
 }
 
 #endif //ARTCHART_HEAPSORT_H
