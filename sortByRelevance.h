@@ -8,17 +8,17 @@
 
 
 int binarySearch(Piece piece, std::vector<Piece> list, int min, int max){
-    int mid = min + (min - max) / 2;
-
     if (min > max){
         return min;
     }
 
-    if (list[mid] == piece.value) return mid;
+    int mid = min + (max - min) / 2;
 
-    if (list[mid] > piece.value) return binarySearch(piece, list, min, mid-1);
+    if (list[mid].value == piece.value) return mid;
 
-    return binarySearch(piece, list, mid+1, max);
+    if (list[mid].value > piece.value) return binarySearch(piece, list, min, mid-1);
+
+    return binarySearch(piece.value, list, mid+1, max);
 }
 
 int dist(int a, int b){
@@ -27,16 +27,16 @@ int dist(int a, int b){
     return b-a;
 }
 
-std::vector<Piece> sortByRelevance(Piece piece, std::vector<Piece>& list){
-    int index = binarySearch(piece, 0, list.size(), list);
+std::vector<int> sortByRelevance(Piece piece, std::vector<Piece>& list){
+    int index = binarySearch(piece, list, 0, list.size());
 
     int left = index-1;
     int right = index+1;
 
-    std::vector<Piece> result; result.push(list[index]);
+    std::vector<Piece> result; result.push_back(list[index].value);
 
     while (true){
-        bool canLeft = left => 0;
+        bool canLeft = left >= 0;
         bool canRight = right < list.size();
 
         if (canLeft && canRight){
@@ -64,6 +64,8 @@ std::vector<Piece> sortByRelevance(Piece piece, std::vector<Piece>& list){
             break;
         }
     }
+
+    return result;
 }
 
 #endif //ART_CHART_DISTANCETO_H
