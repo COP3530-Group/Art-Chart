@@ -2,8 +2,9 @@
 #include "Parser.h"
 #include "SFML/Graphics.hpp"
 #include "RadixSort.h"
-// #include "HeapSort.h"
+#include "HeapSort.h"
 #include "sortByRelevance.h"
+#include <Windows.h>
 
 using namespace std;
 
@@ -17,7 +18,7 @@ struct output_group
 	sf::Text medium;
 };
 
-void GUI(vector<Piece> & gallery);
+void GUI(vector<Piece> & gallery, int rduration, int hduration);
 void init_result(output_group& text, int res, sf::Font& font);
 int which_selected(int x, int y, int curr);
 
@@ -26,7 +27,6 @@ int main(int argc, char **argv)
 	vector<Piece> gallery;
 
 	gallery = parse_dataset(600000);
-	cout << "Gallery size after parsing 600,000 entries: " << gallery.size() << endl;
 	
 	vector<Piece> gallery2 = gallery; // Make a copy of gallery so that we can sort it 2 ways and compare the execution times of quick and heap sort
 	
@@ -35,38 +35,22 @@ int main(int argc, char **argv)
 	gallery = radixSort(gallery, 10);
 	auto rstop = std::chrono::high_resolution_clock::now();
 	auto rduration = std::chrono::duration_cast<std::chrono::microseconds>(rstop-rstart);
-
-	/*
+	
 	// Heap sort
 	auto hstart = std::chrono::high_resolution_clock::now();
 	gallery2 = heap_sort(gallery2);
-
-	for (int i = 1; i < gallery2.size(); i++)
-	{
-		cout << gallery2[i].value << endl;
-		if (gallery2[i].value < gallery[i - 1].value)
-		{
-			cout << "not sorted" << endl;
-			break;
-		}
-
-	}
-
 	auto hstop = std::chrono::high_resolution_clock::now();
 	auto hduration = std::chrono::duration_cast<std::chrono::microseconds>(hstop-hstart);
-	*/
-	cout << gallery.size() << " elements sorted in " << rduration.count() << " microseconds using radix sort" << endl;
+	
+	// cout << gallery.size() << " elements sorted in " << rduration.count() << " microseconds using radix sort" << endl;
 	// cout << gallery2.size() << " elements sorted in " << hduration.count() << " microseconds using heap sort" << endl;
-	
-	
 
-
-	GUI(gallery);
+	GUI(gallery, (int)rduration.count(), (int)hduration.count());
 
     return 0;
 }
 
-void GUI(vector<Piece> & gallery)
+void GUI(vector<Piece> & gallery, int rduration, int hduration)
 {
 	int i;
 
@@ -106,7 +90,7 @@ void GUI(vector<Piece> & gallery)
 
 	// Declare regions for text that is not effected by the user
 
-	sf::Text const_text[10];
+	sf::Text const_text[12];
 
 	const_text[0].setFont(font);
 	const_text[0].setFillColor(sf::Color(255, 255, 255, 255));
@@ -138,6 +122,19 @@ void GUI(vector<Piece> & gallery)
 	const_text[4].setOutlineColor(sf::Color(255, 255, 255, 255));
 	const_text[4].setString(sf::String("Click 'search' to search for a piece and get some similair pieces."));
 	const_text[4].setPosition(25, 120);
+	
+	const_text[10].setFont(font);
+	const_text[10].setFillColor(sf::Color(255, 255, 255, 255));
+	const_text[10].setOutlineColor(sf::Color(255, 255, 255, 255));
+	const_text[10].setString(sf::String("Radix sort sorted " + to_string(gallery.size()) + " elements in " + to_string(rduration) + " microseconds!"));
+	const_text[10].setPosition(0, 0);
+
+	const_text[11].setFont(font);
+	const_text[11].setFillColor(sf::Color(255, 255, 255, 255));
+	const_text[11].setOutlineColor(sf::Color(255, 255, 255, 255));
+	const_text[11].setString(sf::String("Heap sort sorted " + to_string(gallery.size()) + " elements in " + to_string(hduration) + " microseconds!"));
+	const_text[11].setPosition(2000 - const_text[11].findCharacterPos(const_text[11].getString().getSize()-1).x - 10, 0);
+
 
 	// Text for handling/directing user input
 
@@ -286,7 +283,7 @@ void GUI(vector<Piece> & gallery)
 		}
 
 		// Draw constant text fields (title, labels, headings, etc.)
-		for (i = 0; i < 10; i++)
+		for (i = 0; i < 12; i++)
 			window.draw(const_text[i]);
 
 		// Draw the results
