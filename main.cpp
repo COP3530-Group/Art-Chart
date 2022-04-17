@@ -1,10 +1,13 @@
 #include <chrono>
 #include "Parser.h"
 #include "SFML/Graphics.hpp"
+#include "RadixSort.h"
+#include "HeapSort.h"
 
 using namespace std;
 
-struct output_group {
+struct output_group 
+{
 	sf::Text heading;
 	sf::Text piece_name;
 	sf::Text artist_name;
@@ -13,8 +16,7 @@ struct output_group {
 	sf::Text medium;
 };
 
-
-void GUI(vector<Piece> & gallery, vector<Piece> & gallery2);
+void GUI(vector<Piece> & gallery);
 void init_result(output_group& text, int res, sf::Font& font);
 int which_selected(int x, int y, int curr);
 vector<Piece> search_gallery(vector<Piece>& gallery, int value);
@@ -22,44 +24,46 @@ vector<Piece> search_gallery(vector<Piece>& gallery, int value);
 int main(int argc, char **argv)
 {
 	vector<Piece> gallery;
-	map<string, int> periods;
 
-	if (argc == 1) {
-		std::pair<vector<Piece>, map<string, int>> p = parse_dataset(600000);
-		gallery = p.first;
-		periods = p.second;
-		cout << "Gallery size after parsing 600,000 entries: " << gallery.size() << endl;
-	}
-	else {
-		std::pair<vector<Piece>, map<string, int>> p = parse_dataset(stoi(argv[1]));
-		gallery = p.first;
-		periods = p.second;
-		cout << "Gallery size after parsing " << argv[1] << " entries: " << gallery.size() << endl;
-	}
+	gallery = parse_dataset(600000);
+	cout << "Gallery size after parsing 600,000 entries: " << gallery.size() << endl;
 	
 	vector<Piece> gallery2 = gallery; // Make a copy of gallery so that we can sort it 2 ways and compare the execution times of quick and heap sort
 	
-	// Quick sort
-	auto qstart = std::chrono::high_resolution_clock::now();
-	// quick_sort(gallery, 0, gallery.size()-1);
-	auto qstop = std::chrono::high_resolution_clock::now();
-	auto qduration = std::chrono::duration_cast<std::chrono::microseconds>(qstop-qstart);
+	// Radix sort
+	auto rstart = std::chrono::high_resolution_clock::now();
+	gallery = radixSort(gallery, 10);
+	auto rstop = std::chrono::high_resolution_clock::now();
+	auto rduration = std::chrono::duration_cast<std::chrono::microseconds>(rstop-rstart);
+
 
 	// Heap sort
 	auto hstart = std::chrono::high_resolution_clock::now();
-	// heap_sort(gallery2);
+	gallery2 = heap_sort(gallery2);
+
+	for (int i = 1; i < gallery2.size(); i++)
+	{
+		cout << gallery2[i].value << endl;
+		if (gallery2[i].value < gallery[i - 1].value)
+		{
+			cout << "not sorted" << endl;
+			break;
+		}
+
+	}
+
 	auto hstop = std::chrono::high_resolution_clock::now();
 	auto hduration = std::chrono::duration_cast<std::chrono::microseconds>(hstop-hstart);
 
-	// cout << gallery.size() << " elements sorted in " << qduration.count() << " microseconds using quick sort" << endl;
-	// cout << gallery2.size() << " elements sorted in " << hduration.count() << " microseconds using heap sort" << endl;
+	cout << gallery.size() << " elements sorted in " << rduration.count() << " microseconds using radix sort" << endl;
+	cout << gallery2.size() << " elements sorted in " << hduration.count() << " microseconds using heap sort" << endl;
 	
-	GUI(gallery, gallery2);
+	GUI(gallery);
 
     return 0;
 }
 
-void GUI(vector<Piece> & gallery, vector<Piece> & gallery2)
+void GUI(vector<Piece> & gallery)
 {
 	int i;
 
@@ -97,6 +101,8 @@ void GUI(vector<Piece> & gallery, vector<Piece> & gallery2)
 		sf::Vertex(sf::Vector2f(2000,80))
 	};
 
+	// Declare regions for text that is not effected by the user
+
 	sf::Text const_text[10];
 
 	const_text[0].setFont(font);
@@ -130,6 +136,8 @@ void GUI(vector<Piece> & gallery, vector<Piece> & gallery2)
 	const_text[4].setString(sf::String("Click 'search' to search for a piece and get some similair pieces."));
 	const_text[4].setPosition(25, 120);
 
+	// Text for handling/directing user input
+
 	sf::String headings[5] =
 	{
 		"Piece Name:",
@@ -162,10 +170,13 @@ void GUI(vector<Piece> & gallery, vector<Piece> & gallery2)
 		user_text[i].setPosition((float)55, (float)250 + (120 * i));
 	}
 	
+	// Sear
+
 	sf::RectangleShape search_field;
 	search_field.setSize(sf::Vector2f(500, 80));
 	search_field.setFillColor(sf::Color(0, 255, 0, 100));
 	search_field.setPosition((float)250, (float)900);
+
 	sf::Text search_text;
 	search_text.setFont(font);
 	search_text.setString(sf::String("Search"));
@@ -227,15 +238,20 @@ void GUI(vector<Piece> & gallery, vector<Piece> & gallery2)
 
 		if (search_clicked)
 		{
+			// Verify no empty input
 			int count = 0;
 			for (i = 0; i < 5; i++)
 				if (user_input[i].toAnsiString() == "") count++;
 
+			// Update text fields to result of searching for the specified value
 			if (count == 0)
 			{
+				// Using the search parameters, make an object with them to generate the corresponding
 				Piece p(user_input[0].toAnsiString(), user_input[1].toAnsiString(), user_input[2].toAnsiString(), user_input[4].toAnsiString(), stoi(user_input[3].toAnsiString()));
+
 				vector<Piece> result = search_gallery(gallery, p.value);
 
+				// Update each output field with the corresponding data from result
 				for (i = 0; i < 5; i++)
 				{
 					results[i].artist_name.setString("Artist Name: " + result[i].artist_name);
@@ -249,8 +265,12 @@ void GUI(vector<Piece> & gallery, vector<Piece> & gallery2)
 			search_clicked = false;
 		}
 
+		// Line partitions for formatting
+		window.draw(vert_line, 2, sf::Lines);
+		window.draw(horz_line1, 2, sf::Lines);
+		window.draw(horz_line2, 2, sf::Lines);
 
-
+		// Highlight the correct selected input field, draw each input field with the user inputted text over it
 		for (i = 0; i < 5; i++) 
 		{
 			text_box[i].setFillColor(sf::Color(255, 255, 255, 30));
@@ -259,12 +279,11 @@ void GUI(vector<Piece> & gallery, vector<Piece> & gallery2)
 			window.draw(user_text[i]);
 		}
 
-		window.draw(vert_line, 2, sf::Lines);
-		window.draw(horz_line1, 2, sf::Lines);
-		window.draw(horz_line2, 2, sf::Lines);
-
+		// Draw constant text fields (title, labels, headings, etc.)
 		for (i = 0; i < 10; i++)
 			window.draw(const_text[i]);
+
+		// Draw the results
 		for (i = 0; i < 5; i++)
 		{
 			window.draw(text_box[i]);
@@ -276,6 +295,7 @@ void GUI(vector<Piece> & gallery, vector<Piece> & gallery2)
 			window.draw(results[i].medium);
 		}
 
+		// Draw search button
 		window.draw(search_field);
 		window.draw(search_text);
 
