@@ -6,7 +6,39 @@
 
 using namespace std;
 
-void heapify_down(int i, vector<Piece>& collection)
+void heapify_down_min(int i, vector<Piece>& collection)
+{
+    int parentIndex = i;
+    int lChildIndex = 2*parentIndex + 1;
+    int rChildIndex = 2*parentIndex + 2;
+
+    while(lChildIndex < collection.size())
+    {
+        int lesserChildIndex;
+
+        if(rChildIndex >= collection.size())
+            lesserChildIndex = lChildIndex;
+        else if(collection[lChildIndex].value < collection[rChildIndex].value)
+            lesserChildIndex = lChildIndex;
+        else
+            lesserChildIndex = rChildIndex;
+
+        if(collection[parentIndex].value > collection[lesserChildIndex].value)
+        {
+            auto swap = collection[lesserChildIndex];
+            collection[lesserChildIndex] = collection[parentIndex];
+            collection[parentIndex] = swap;
+
+            //Setup next
+            parentIndex = lesserChildIndex;
+            lChildIndex = 2*parentIndex + 1;
+            rChildIndex = 2*parentIndex + 2;
+        }else
+            return;
+    }
+}
+
+void heapify_down_max(int i, vector<Piece>& collection)
 {
     int parentIndex = i;
     int lChildIndex = 2*parentIndex + 1;
@@ -33,7 +65,7 @@ void heapify_down(int i, vector<Piece>& collection)
             parentIndex = greaterChildIndex;
             lChildIndex = 2*parentIndex + 1;
             rChildIndex = 2*parentIndex + 2;
-        }else
+        } else
             return;
     }
 }
@@ -43,7 +75,7 @@ std::vector<Piece> heap_sort(std::vector<Piece> gallery)
     //Heapify
     for (int i = gallery.size()/2; i >= 0; i--)
     {
-        heapify_down(i, gallery);
+        heapify_down_min(i, gallery);
     }
 
     //Extract
@@ -59,7 +91,7 @@ std::vector<Piece> heap_sort(std::vector<Piece> gallery)
         gallery[0] = gallery[lastIndex];
         gallery.pop_back();
 
-        heapify_down(0, gallery);
+        heapify_down_min(0, gallery);
     }
 
     return sortedGallery;
