@@ -13,6 +13,7 @@ struct output_group {
 	sf::Text medium;
 };
 
+
 void GUI(vector<Piece> & gallery, vector<Piece> & gallery2);
 void init_result(output_group& text, int res, sf::Font& font);
 int which_selected(int x, int y, int curr);

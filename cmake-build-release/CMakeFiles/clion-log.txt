@@ -1,4 +1,13 @@
 "C:\Program Files\JetBrains\CLion 2021.3.3\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Release -G "CodeBlocks - MinGW Makefiles" "C:\All Alex Files\Code\UF_DataStructures_HW\Art-Chart"
 -- Configuring done
--- Generating done
--- Build files have been written to: C:/All Alex Files/Code/UF_DataStructures_HW/Art-Chart/cmake-build-release
+CMake Error at CMakeLists.txt:6 (add_executable):
+  Cannot find source file:
+
+    ArtReader.cpp
+
+
+CMake Error at CMakeLists.txt:6 (add_executable):
+  No SOURCES given to target: ArtChart
+
+
+CMake Generate step failed.  Build files cannot be regenerated correctly.
