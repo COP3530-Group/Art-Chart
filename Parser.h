@@ -15,7 +15,7 @@ std::pair<std::vector<Piece>, std::map<std::string, int>> parse_dataset(int coun
 	std::map<std::string, int> periods;
 	
 	dataset.open("MetObjects.txt");
-	getline(dataset, in); // get rid of first line which is information about the following rows of data
+	std::getline(dataset, in); // get rid of first line which is information about the following rows of data
 	
 	for (i = 0; i < count; i++)
 	{
@@ -35,7 +35,7 @@ std::pair<std::vector<Piece>, std::map<std::string, int>> parse_dataset(int coun
 		if (in.length() < 70 || i == 439647) continue;		
 		if (in.at(0) == '\"' && in.at(in.length()-1) == '\"' || in.at(0) == '(' && in.at(in.length()-1) == ')' ) continue;
 		
-		for (int j = 0; j < in.length(); j++) {
+		for (unsigned int j = 0; j < in.length(); j++) {
 			if (in.at(j) == '\"') quote_count++;
 			if (in.at(j) != '\"' && in.at(j) != ' ') true_length++;
 		}
@@ -48,7 +48,7 @@ std::pair<std::vector<Piece>, std::map<std::string, int>> parse_dataset(int coun
 		while (in.length() > 0)
 		{		
 			index = 0;
-			while (in.at(index) != ',' && index < in.length()-1) 
+			while (in.at(index) != ',' && index < (int)in.length()-1) 
 			{
 				if (in.at(index) == '\"') // need to look for next quote then comma
 				{
@@ -71,7 +71,6 @@ std::pair<std::vector<Piece>, std::map<std::string, int>> parse_dataset(int coun
 			
 			if (temp == "") temp = "unknown";
 			if (temp == "unknown" && (iter == 10 || iter == 12 || iter == 19 || iter == 31 || iter == 32)) unknown_count++;
-	
 			
 			switch (iter)
 			{
