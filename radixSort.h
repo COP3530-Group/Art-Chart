@@ -20,7 +20,7 @@ void clearBuckets(std::vector<std::vector<Piece>>& bucket){
     }
 }
 
-std::vector<Piece> sort(std::vector<Piece>& list, int nBuckets){
+std::vector<Piece> radixSort(std::vector<Piece>& list, int nBuckets){
     int max = INT_MIN;
     int min = INT_MAX;
 
