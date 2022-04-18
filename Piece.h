@@ -13,40 +13,40 @@
 class Piece 
 {
 	public:
-		std::string time_period = "";
+		std::string timePeriod = "";
 		std::string medium = "";
-		std::string artist_name = "";
-		std::string piece_name = "";
-		int year_finished = 0;
+		std::string artistName = "";
+		std::string pieceName = "";
+		int yearFinished = 0;
 		
 		int value; // What it will be sorted by for each algorithm
 	
 		Piece(std::string _time_period, std::string _medium, std::string _artist_name, std::string _piece_name, int _year_finished);	
-		void Value_gen(); // tbd
+		void valueGen();
 		void print();
 };
 
 Piece::Piece(std::string _piece_name, std::string _time_period, std::string _artist_name, std::string _medium, int _year_finished) 
 {
-	piece_name = _piece_name;
-	time_period = _time_period;
-	artist_name = _artist_name;
+	pieceName = _piece_name;
+	timePeriod = _time_period;
+	artistName = _artist_name;
 	medium = _medium;
-	year_finished = _year_finished;
-	Value_gen();
+	yearFinished = _year_finished;
+	valueGen();
 }
 
-void Piece::Value_gen() 
+void Piece::valueGen() 
 {
-	value = (piece_name.length()*NAME_WEIGHT) + (time_period.length()*PERIOD_WEIGHT) + (artist_name.length()*ARTIST_WEIGHT) + (medium.length()*MEDIUM_WEIGHT) + (year_finished*FINISHED_WEIGHT);
+	value = (pieceName.length()*NAME_WEIGHT) + (timePeriod.length()*PERIOD_WEIGHT) + (artistName.length()*ARTIST_WEIGHT) + (medium.length()*MEDIUM_WEIGHT) + (yearFinished*FINISHED_WEIGHT);
 }
 
 void Piece::print()
 {
-	std::cout << "Time period: " << time_period << std::endl;
+	std::cout << "Time period: " << timePeriod << std::endl;
 	std::cout << "Medium: " << medium << std::endl;
-	std::cout << "Artist name: " << artist_name << std::endl;
-	std::cout << "Piece name: " << piece_name << std::endl;
-	std::cout << "Year finished: " << year_finished << std::endl;
+	std::cout << "Artist name: " << artistName << std::endl;
+	std::cout << "Piece name: " << pieceName << std::endl;
+	std::cout << "Year finished: " << yearFinished << std::endl;
 	std::cout << "Value: " << value << std::endl;
 }
