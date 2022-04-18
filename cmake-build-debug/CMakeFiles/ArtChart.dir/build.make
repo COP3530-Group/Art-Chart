@@ -82,67 +82,35 @@ CMakeFiles/ArtChart.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ArtChart.dir/main.cpp.s"
 	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\All Alex Files\Code\UF_DataStructures_HW\Art-Chart\main.cpp" -o CMakeFiles\ArtChart.dir\main.cpp.s
 
-CMakeFiles/ArtChart.dir/ArtChart.cpp.obj: CMakeFiles/ArtChart.dir/flags.make
-CMakeFiles/ArtChart.dir/ArtChart.cpp.obj: ../ArtChart.cpp
-CMakeFiles/ArtChart.dir/ArtChart.cpp.obj: CMakeFiles/ArtChart.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\All Alex Files\Code\UF_DataStructures_HW\Art-Chart\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/ArtChart.dir/ArtChart.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ArtChart.dir/ArtChart.cpp.obj -MF CMakeFiles\ArtChart.dir\ArtChart.cpp.obj.d -o CMakeFiles\ArtChart.dir\ArtChart.cpp.obj -c "C:\All Alex Files\Code\UF_DataStructures_HW\Art-Chart\ArtChart.cpp"
+CMakeFiles/ArtChart.dir/AlexMain.cpp.obj: CMakeFiles/ArtChart.dir/flags.make
+CMakeFiles/ArtChart.dir/AlexMain.cpp.obj: ../AlexMain.cpp
+CMakeFiles/ArtChart.dir/AlexMain.cpp.obj: CMakeFiles/ArtChart.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\All Alex Files\Code\UF_DataStructures_HW\Art-Chart\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/ArtChart.dir/AlexMain.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ArtChart.dir/AlexMain.cpp.obj -MF CMakeFiles\ArtChart.dir\AlexMain.cpp.obj.d -o CMakeFiles\ArtChart.dir\AlexMain.cpp.obj -c "C:\All Alex Files\Code\UF_DataStructures_HW\Art-Chart\AlexMain.cpp"
 
-CMakeFiles/ArtChart.dir/ArtChart.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ArtChart.dir/ArtChart.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\All Alex Files\Code\UF_DataStructures_HW\Art-Chart\ArtChart.cpp" > CMakeFiles\ArtChart.dir\ArtChart.cpp.i
+CMakeFiles/ArtChart.dir/AlexMain.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ArtChart.dir/AlexMain.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\All Alex Files\Code\UF_DataStructures_HW\Art-Chart\AlexMain.cpp" > CMakeFiles\ArtChart.dir\AlexMain.cpp.i
 
-CMakeFiles/ArtChart.dir/ArtChart.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ArtChart.dir/ArtChart.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\All Alex Files\Code\UF_DataStructures_HW\Art-Chart\ArtChart.cpp" -o CMakeFiles\ArtChart.dir\ArtChart.cpp.s
-
-CMakeFiles/ArtChart.dir/ArtDisplay.cpp.obj: CMakeFiles/ArtChart.dir/flags.make
-CMakeFiles/ArtChart.dir/ArtDisplay.cpp.obj: ../ArtDisplay.cpp
-CMakeFiles/ArtChart.dir/ArtDisplay.cpp.obj: CMakeFiles/ArtChart.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\All Alex Files\Code\UF_DataStructures_HW\Art-Chart\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/ArtChart.dir/ArtDisplay.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ArtChart.dir/ArtDisplay.cpp.obj -MF CMakeFiles\ArtChart.dir\ArtDisplay.cpp.obj.d -o CMakeFiles\ArtChart.dir\ArtDisplay.cpp.obj -c "C:\All Alex Files\Code\UF_DataStructures_HW\Art-Chart\ArtDisplay.cpp"
-
-CMakeFiles/ArtChart.dir/ArtDisplay.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ArtChart.dir/ArtDisplay.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\All Alex Files\Code\UF_DataStructures_HW\Art-Chart\ArtDisplay.cpp" > CMakeFiles\ArtChart.dir\ArtDisplay.cpp.i
-
-CMakeFiles/ArtChart.dir/ArtDisplay.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ArtChart.dir/ArtDisplay.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\All Alex Files\Code\UF_DataStructures_HW\Art-Chart\ArtDisplay.cpp" -o CMakeFiles\ArtChart.dir\ArtDisplay.cpp.s
-
-CMakeFiles/ArtChart.dir/HeapSort.cpp.obj: CMakeFiles/ArtChart.dir/flags.make
-CMakeFiles/ArtChart.dir/HeapSort.cpp.obj: ../HeapSort.cpp
-CMakeFiles/ArtChart.dir/HeapSort.cpp.obj: CMakeFiles/ArtChart.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\All Alex Files\Code\UF_DataStructures_HW\Art-Chart\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/ArtChart.dir/HeapSort.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ArtChart.dir/HeapSort.cpp.obj -MF CMakeFiles\ArtChart.dir\HeapSort.cpp.obj.d -o CMakeFiles\ArtChart.dir\HeapSort.cpp.obj -c "C:\All Alex Files\Code\UF_DataStructures_HW\Art-Chart\HeapSort.cpp"
-
-CMakeFiles/ArtChart.dir/HeapSort.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ArtChart.dir/HeapSort.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\All Alex Files\Code\UF_DataStructures_HW\Art-Chart\HeapSort.cpp" > CMakeFiles\ArtChart.dir\HeapSort.cpp.i
-
-CMakeFiles/ArtChart.dir/HeapSort.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ArtChart.dir/HeapSort.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\All Alex Files\Code\UF_DataStructures_HW\Art-Chart\HeapSort.cpp" -o CMakeFiles\ArtChart.dir\HeapSort.cpp.s
+CMakeFiles/ArtChart.dir/AlexMain.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ArtChart.dir/AlexMain.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\All Alex Files\Code\UF_DataStructures_HW\Art-Chart\AlexMain.cpp" -o CMakeFiles\ArtChart.dir\AlexMain.cpp.s
 
 # Object files for target ArtChart
 ArtChart_OBJECTS = \
 "CMakeFiles/ArtChart.dir/main.cpp.obj" \
-"CMakeFiles/ArtChart.dir/ArtChart.cpp.obj" \
-"CMakeFiles/ArtChart.dir/ArtDisplay.cpp.obj" \
-"CMakeFiles/ArtChart.dir/HeapSort.cpp.obj"
+"CMakeFiles/ArtChart.dir/AlexMain.cpp.obj"
 
 # External object files for target ArtChart
 ArtChart_EXTERNAL_OBJECTS =
 
 ArtChart.exe: CMakeFiles/ArtChart.dir/main.cpp.obj
-ArtChart.exe: CMakeFiles/ArtChart.dir/ArtChart.cpp.obj
-ArtChart.exe: CMakeFiles/ArtChart.dir/ArtDisplay.cpp.obj
-ArtChart.exe: CMakeFiles/ArtChart.dir/HeapSort.cpp.obj
+ArtChart.exe: CMakeFiles/ArtChart.dir/AlexMain.cpp.obj
 ArtChart.exe: CMakeFiles/ArtChart.dir/build.make
 ArtChart.exe: CMakeFiles/ArtChart.dir/linklibs.rsp
 ArtChart.exe: CMakeFiles/ArtChart.dir/objects1.rsp
 ArtChart.exe: CMakeFiles/ArtChart.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="C:\All Alex Files\Code\UF_DataStructures_HW\Art-Chart\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable ArtChart.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="C:\All Alex Files\Code\UF_DataStructures_HW\Art-Chart\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable ArtChart.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\ArtChart.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
