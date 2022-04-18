@@ -7,7 +7,7 @@
 std::vector<Piece> parseDataset(int count)
 {
 	int i, iter, index, unknown_count, quoteCount, trueLength, finished;
-	std::string in, temp, piece, period, artist, medium;
+	std::string in, temp, piece, period, artist, medium, link;
 	std::ifstream dataset;
 	
 	std::vector<Piece> gallery;
@@ -91,9 +91,7 @@ std::vector<Piece> parseDataset(int count)
 			if (iter == 32) break;
 			iter++;
 		}
-
-		if (unknown_count < 4)
-			gallery.push_back(Piece(piece, period, artist, medium, finished));
+		if (unknown_count < 4) gallery.push_back(Piece(piece, period, artist, medium, finished));
 	}		
 	dataset.close();
 	return gallery;

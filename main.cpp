@@ -1,33 +1,36 @@
 #include <chrono>
-#include "Parser.h"
 #include "SFML/Graphics.hpp"
+
+#include "Parser.h"
 #include "RadixSort.h"
 #include "HeapSort.h"
-#include "sortByRelevance.h"
-#include <Windows.h>
+#include "SortByRelevance.h"
+
 
 using namespace std;
 
-struct output_group 
+struct outputGroup 
 {
 	sf::Text heading;
-	sf::Text piece_name;
-	sf::Text artist_name;
+	sf::Text pieceName;
+	sf::Text artistName;
 	sf::Text period;
 	sf::Text completed;
 	sf::Text medium;
+	sf::Text link;
 };
 
 void GUI(vector<Piece> & gallery, int rduration, int hduration);
-void init_result(output_group& text, int res, sf::Font& font);
-int which_selected(int x, int y, int curr);
+void initText(sf::Text& text, sf::Font& font, string str, int charSize, int xPos, int yPos);
+void initResult(outputGroup& text, int res, sf::Font& font);
+int whichSelected(int x, int y, int curr);
 
 int main(int argc, char **argv)
 {
 	vector<Piece> gallery;
 
-	gallery = parse_dataset(600000);
-	
+	gallery = parseDataset(600000);
+
 	vector<Piece> gallery2 = gallery; // Make a copy of gallery so that we can sort it 2 ways and compare the execution times of quick and heap sort
 	
 	// Radix sort
@@ -38,10 +41,10 @@ int main(int argc, char **argv)
 	
 	// Heap sort
 	auto hstart = std::chrono::high_resolution_clock::now();
-	gallery2 = heap_sort(gallery2);
+	gallery2 = heapSort(gallery2);
 	auto hstop = std::chrono::high_resolution_clock::now();
 	auto hduration = std::chrono::duration_cast<std::chrono::microseconds>(hstop-hstart);
-	
+
 	// cout << gallery.size() << " elements sorted in " << rduration.count() << " microseconds using radix sort" << endl;
 	// cout << gallery2.size() << " elements sorted in " << hduration.count() << " microseconds using heap sort" << endl;
 
@@ -65,95 +68,39 @@ void GUI(vector<Piece> & gallery, int rduration, int hduration)
 		return;
 	}
 
-	// 0->piece_name, 1->artist_name, 2->period, 3->approx.data_completed, 4->medium
+	// Constant text
+	sf::Text constText[12];
 
-	sf::String user_input[5];
-	sf::Text user_text[5];
+	// User inputed text
+	sf::String userInput[5];
+	sf::Text userText[5];
 	
-	sf::Vertex vert_line[] =
-	{
-		sf::Vertex(sf::Vector2f(1000,50)),
-		sf::Vertex(sf::Vector2f(1000,1000))
-	};
+	// Screen partitions
+	sf::Vertex vertLine[] = {sf::Vertex(sf::Vector2f(1000,50)), sf::Vertex(sf::Vector2f(1000,1000))};
+	sf::Vertex horzLine1[] = {sf::Vertex(sf::Vector2f(0,50)), sf::Vertex(sf::Vector2f(2000,50))};
+	sf::Vertex horzLine2[] = {sf::Vertex(sf::Vector2f(0,80)), sf::Vertex(sf::Vector2f(2000,80))};
 
-	sf::Vertex horz_line1[] =
-	{
-		sf::Vertex(sf::Vector2f(0,50)),
-		sf::Vertex(sf::Vector2f(2000,50))
-	};
+	// Headings and info text
+	initText(constText[0], font, "Art Chart", 40, 1000 - (constText[0].findCharacterPos(8).x / 2), 0);
+	initText(constText[1], font, "Input", 30, 500 - (constText[1].findCharacterPos(4).x / 2), 45);
+	initText(constText[2], font, "Output", 30, 1500 - (constText[2].findCharacterPos(5).x / 2), 45);
+	initText(constText[3], font, "Input the following parameters in the corresponding text fields.", 30, 25, 80);
+	initText(constText[4], font, "Click 'Search' to search for a piece and get some similair pieces.", 30, 25, 120);
+	initText(constText[10], font, "Radix sort sorted " + to_string(gallery.size()) + " elements in " + to_string(rduration) + " microseconds!", 30, 0, 0);
+	initText(constText[11], font, "Heap sort sorted " + to_string(gallery.size()) + " elements in " + to_string(hduration) + " microseconds!", 30, 1249, 0);
 
-	sf::Vertex horz_line2[] =
-	{
-		sf::Vertex(sf::Vector2f(0,80)),
-		sf::Vertex(sf::Vector2f(2000,80))
-	};
+	// Text for directing user input
+	sf::String headings[5] = {"Piece Name:", "Artist Name:", "Period:", "Approx. Data Completed (enter a number):", "Medium:"};
 
-	// Declare regions for text that is not effected by the user
-
-	sf::Text const_text[12];
-
-	const_text[0].setFont(font);
-	const_text[0].setFillColor(sf::Color(255, 255, 255, 255));
-	const_text[0].setOutlineColor(sf::Color(255, 255, 255, 255));
-	const_text[0].setString(sf::String("Art Chart"));
-	const_text[0].setCharacterSize(40);
-	const_text[0].setPosition(1000 - (const_text[0].findCharacterPos(8).x / 2), 0);
-
-	const_text[1].setFont(font);
-	const_text[1].setFillColor(sf::Color(255, 255, 255, 255));
-	const_text[1].setOutlineColor(sf::Color(255, 255, 255, 255));
-	const_text[1].setString(sf::String("Input"));
-	const_text[1].setPosition(500 - (const_text[1].findCharacterPos(4).x / 2), 45);
-
-	const_text[2].setFont(font);
-	const_text[2].setFillColor(sf::Color(255, 255, 255, 255));
-	const_text[2].setOutlineColor(sf::Color(255, 255, 255, 255));
-	const_text[2].setString(sf::String("Output"));
-	const_text[2].setPosition(1500 - (const_text[2].findCharacterPos(5).x / 2), 45);
-
-	const_text[3].setFont(font);
-	const_text[3].setFillColor(sf::Color(255, 255, 255, 255));
-	const_text[3].setOutlineColor(sf::Color(255, 255, 255, 255));
-	const_text[3].setString(sf::String("Input the following parameters in the text correspondng text fields."));
-	const_text[3].setPosition(25, 80);
-
-	const_text[4].setFont(font);
-	const_text[4].setFillColor(sf::Color(255, 255, 255, 255));
-	const_text[4].setOutlineColor(sf::Color(255, 255, 255, 255));
-	const_text[4].setString(sf::String("Click 'search' to search for a piece and get some similair pieces."));
-	const_text[4].setPosition(25, 120);
-	
-	const_text[10].setFont(font);
-	const_text[10].setFillColor(sf::Color(255, 255, 255, 255));
-	const_text[10].setOutlineColor(sf::Color(255, 255, 255, 255));
-	const_text[10].setString(sf::String("Radix sort sorted " + to_string(gallery.size()) + " elements in " + to_string(rduration) + " microseconds!"));
-	const_text[10].setPosition(0, 0);
-
-	const_text[11].setFont(font);
-	const_text[11].setFillColor(sf::Color(255, 255, 255, 255));
-	const_text[11].setOutlineColor(sf::Color(255, 255, 255, 255));
-	const_text[11].setString(sf::String("Heap sort sorted " + to_string(gallery.size()) + " elements in " + to_string(hduration) + " microseconds!"));
-	const_text[11].setPosition(2000 - const_text[11].findCharacterPos(const_text[11].getString().getSize()-1).x - 10, 0);
-
-
-	// Text for handling/directing user input
-
-	sf::String headings[5] =
-	{
-		"Piece Name:",
-		"Artist Name:",
-		"Period:",
-		"Approx. Data Completed (enter a number):",
-		"Medium:"
-	};
+	//sf::String headings[5] = { "Year (enter a number):", "Artist Name:", "Period:", "Piece Name:", "Medium:" };
 
 	for (i = 0; i < 5; i++)
 	{
-		const_text[i+5].setFont(font);
-		const_text[i+5].setFillColor(sf::Color(255, 255, 255, 255));
-		const_text[i+5].setOutlineColor(sf::Color(255, 255, 255, 255));
-		const_text[i+5].setString(sf::String(headings[i]));
-		const_text[i+5].setPosition((float)25, (float)200+(120*i));
+		constText[i+5].setFont(font);
+		constText[i+5].setFillColor(sf::Color(255, 255, 255, 255));
+		constText[i+5].setOutlineColor(sf::Color(255, 255, 255, 255));
+		constText[i+5].setString(sf::String(headings[i]));
+		constText[i+5].setPosition((float)25, (float)200+(120*i));
 	}
 
 	sf::RectangleShape text_box[5];
@@ -164,13 +111,13 @@ void GUI(vector<Piece> & gallery, int rduration, int hduration)
 		text_box[i].setFillColor(sf::Color(255, 255, 255, 30));
 		text_box[i].setPosition((float)50, (float)250 + (120 * i));
 
-		user_text[i].setFont(font);
-		user_text[i].setFillColor(sf::Color(225, 225, 20, 255));
-		user_text[i].setOutlineColor(sf::Color(225, 225, 20, 255));
-		user_text[i].setPosition((float)55, (float)250 + (120 * i));
+		userText[i].setFont(font);
+		userText[i].setFillColor(sf::Color(225, 225, 20, 255));
+		userText[i].setOutlineColor(sf::Color(225, 225, 20, 255));
+		userText[i].setPosition((float)55, (float)250 + (120 * i));
 	}
 	
-	// Sear
+	// Search
 
 	sf::RectangleShape search_field;
 	search_field.setSize(sf::Vector2f(500, 80));
@@ -185,11 +132,11 @@ void GUI(vector<Piece> & gallery, int rduration, int hduration)
 	search_text.setOutlineColor(sf::Color(255, 255, 255, 200));
 	search_text.setPosition((float)500 - (search_text.findCharacterPos(5).x / 2), (float)910);
 
-	output_group results[5];
+	outputGroup results[5];
 
 	for (i = 0; i < 5; i++)
 	{
-		init_result(results[i], i, font);
+		initResult(results[i], i, font);
 	}
 
 	int selected = 0;
@@ -199,15 +146,14 @@ void GUI(vector<Piece> & gallery, int rduration, int hduration)
 	{
 		while (window.pollEvent(e))
 		{
-			if (e.type == sf::Event::Closed) window.close();
-
+			// Keyboard input
 			if (e.type == sf::Event::TextEntered)
 			{
 				switch (e.text.unicode)
 				{
 				case 8: // backspace
-					if (user_input[selected].getSize() > 0)
-						user_input[selected].erase(user_input[selected].getSize() - 1, 1);
+					if (userInput[selected].getSize() > 0)
+						userInput[selected].erase(userInput[selected].getSize() - 1, 1);
 					// do nothing
 					break;
 				case 9: // tab
@@ -217,19 +163,22 @@ void GUI(vector<Piece> & gallery, int rduration, int hduration)
 					search_clicked = true;
 					break;
 				default:
-					if (!(user_text[selected].findCharacterPos(user_input[selected].getSize() - 1).x > 930))
-						user_input[selected] += e.text.unicode;
+					if (!(userText[selected].findCharacterPos(userInput[selected].getSize() - 1).x > 930))
+						userInput[selected] += e.text.unicode;
 					break;
 				}
 
-				user_text[selected].setString(user_input[selected]);
+				userText[selected].setString(userInput[selected]);
 			}
+
+			// Mouse input
+			if (e.type == sf::Event::Closed) window.close();
 
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 			{
 				int x = sf::Mouse::getPosition(window).x;
 				int y = sf::Mouse::getPosition(window).y;
-				selected = which_selected(x, y, selected);
+				selected = whichSelected(x, y, selected);
 				if (x > 250 && x < 750 && y > 900 && y < 950) search_clicked = true;
 			}
 		}
@@ -241,37 +190,34 @@ void GUI(vector<Piece> & gallery, int rduration, int hduration)
 			// Verify no empty input
 			int count = 0;
 			for (i = 0; i < 5; i++)
-				if (user_input[i].toAnsiString() == "") count++;
+				if (userInput[i].toAnsiString() == "") count++;
 
 			// Update text fields to result of searching for the specified value
 			if (count == 0)
 			{
 				// Using the search parameters, make an object with them to generate the corresponding
-				Piece p(user_input[0].toAnsiString(), user_input[1].toAnsiString(), user_input[2].toAnsiString(), user_input[4].toAnsiString(), stoi(user_input[3].toAnsiString()));
+				Piece p(userInput[0].toAnsiString(), userInput[1].toAnsiString(), userInput[2].toAnsiString(), userInput[4].toAnsiString(), stoi(userInput[3].toAnsiString()));
 
 				vector<Piece> relevant = sortByRelevance(p, gallery);
 
 				// Update each output field with the corresponding data from result
 				for (i = 0; i < 5; i++)
 				{
-					results[i].artist_name.setString("Artist Name: " + relevant[i].artist_name);
-					results[i].piece_name.setString("Piece Name: " + relevant[i].piece_name);
-					results[i].period.setString("Period: " + relevant[i].time_period);
-					results[i].completed.setString("Year Completed: " + to_string(relevant[i].year_finished));
+					results[i].artistName.setString("Artist Name: " + relevant[i].artistName);
+					results[i].pieceName.setString("Piece Name: " + relevant[i].pieceName);
+					results[i].period.setString("Period: " + relevant[i].timePeriod);
+					results[i].completed.setString("Year Completed: " + to_string(relevant[i].yearFinished));
 					results[i].medium.setString("Medium: " + relevant[i].medium);
 				}
 
 			}
 			search_clicked = false;
-
-			
-
 		}
 
 		// Line partitions for formatting
-		window.draw(vert_line, 2, sf::Lines);
-		window.draw(horz_line1, 2, sf::Lines);
-		window.draw(horz_line2, 2, sf::Lines);
+		window.draw(vertLine, 2, sf::Lines);
+		window.draw(horzLine1, 2, sf::Lines);
+		window.draw(horzLine2, 2, sf::Lines);
 
 		// Highlight the correct selected input field, draw each input field with the user inputted text over it
 		for (i = 0; i < 5; i++) 
@@ -279,20 +225,20 @@ void GUI(vector<Piece> & gallery, int rduration, int hduration)
 			text_box[i].setFillColor(sf::Color(255, 255, 255, 30));
 			if (i == selected) text_box[i].setFillColor(sf::Color(255, 255, 255, 120));
 			window.draw(text_box[i]);
-			window.draw(user_text[i]);
+			window.draw(userText[i]);
 		}
 
 		// Draw constant text fields (title, labels, headings, etc.)
 		for (i = 0; i < 12; i++)
-			window.draw(const_text[i]);
+			window.draw(constText[i]);
 
 		// Draw the results
 		for (i = 0; i < 5; i++)
 		{
 			window.draw(text_box[i]);
 			window.draw(results[i].heading);
-			window.draw(results[i].piece_name);
-			window.draw(results[i].artist_name);
+			window.draw(results[i].pieceName);
+			window.draw(results[i].artistName);
 			window.draw(results[i].period);
 			window.draw(results[i].completed);
 			window.draw(results[i].medium);
@@ -306,7 +252,17 @@ void GUI(vector<Piece> & gallery, int rduration, int hduration)
 	}
 }
 
-void init_result(output_group &text, int res, sf::Font &font)
+void initText(sf::Text& text, sf::Font& font, string str, int charSize, int xPos, int yPos)
+{
+	text.setFont(font);
+	text.setFillColor(sf::Color(255,255,255,255));
+	text.setOutlineColor(sf::Color(255,255,255,255));
+	text.setString(sf::String(str));
+	text.setCharacterSize(charSize);
+	text.setPosition(xPos, yPos);
+}
+
+void initResult(outputGroup &text, int res, sf::Font &font)
 {
 	// Initializes result outgroup
 
@@ -318,19 +274,19 @@ void init_result(output_group &text, int res, sf::Font &font)
 	text.heading.setPosition((float)1055, (float)80 + (180 * res));
 	text.heading.setString(sf::String(str));
 
-	text.artist_name.setFont(font);
-	text.artist_name.setCharacterSize(20);
-	text.artist_name.setFillColor(sf::Color(255, 255, 255, 255));
-	text.artist_name.setOutlineColor(sf::Color(255, 255, 255, 255));
-	text.artist_name.setPosition((float)1100, (float)85 + (180 * res) + 20);
-	text.artist_name.setString("Artist Name: ");
+	text.artistName.setFont(font);
+	text.artistName.setCharacterSize(20);
+	text.artistName.setFillColor(sf::Color(255, 255, 255, 255));
+	text.artistName.setOutlineColor(sf::Color(255, 255, 255, 255));
+	text.artistName.setPosition((float)1100, (float)85 + (180 * res) + 20);
+	text.artistName.setString("Artist Name: ");
 
-	text.piece_name.setFont(font);
-	text.piece_name.setCharacterSize(20);
-	text.piece_name.setFillColor(sf::Color(255, 255, 255, 255));
-	text.piece_name.setOutlineColor(sf::Color(255, 255, 255, 255));
-	text.piece_name.setPosition((float)1100, (float)85 + (180 * res) + 40);
-	text.piece_name.setString("Piece Name: ");
+	text.pieceName.setFont(font);
+	text.pieceName.setCharacterSize(20);
+	text.pieceName.setFillColor(sf::Color(255, 255, 255, 255));
+	text.pieceName.setOutlineColor(sf::Color(255, 255, 255, 255));
+	text.pieceName.setPosition((float)1100, (float)85 + (180 * res) + 40);
+	text.pieceName.setString("Piece Name: ");
 
 	text.period.setFont(font);
 	text.period.setCharacterSize(20);
@@ -354,7 +310,7 @@ void init_result(output_group &text, int res, sf::Font &font)
 	text.medium.setString("Medium: ");
 }
 
-int which_selected(int x, int y, int curr)
+int whichSelected(int x, int y, int curr)
 {
 	// Check whether x and y lie in any text box's region, if they do, return the text box's ID to become selected
 	int lowerx = 50, upperx = 950, lowery, uppery;
