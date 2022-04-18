@@ -1,7 +1,10 @@
 #pragma once
 #include <vector>
+#include <cmath>
 #include "Piece.h"
 
+//Used from stack overflow, as the c++ standard library did not have an integer exponent function
+//https://stackoverflow.com/a/1505791
 int pow(int x, unsigned int p){
     if (p == 0) return 1;
     if (p == 1) return x;
@@ -21,6 +24,9 @@ std::vector<Piece> radixSort(std::vector<Piece>& list, int nBuckets){
     int max = INT_MIN;
     int min = INT_MAX;
 
+    //Grabs the min and max of the list
+    //This is to both normalize the values to always be non-negative,
+    //and to know the maximum number of digits any value in the list has
     for (auto v: list){
         if (v.value < min){
             min = v.value;
@@ -30,12 +36,11 @@ std::vector<Piece> radixSort(std::vector<Piece>& list, int nBuckets){
         }
     }
 
-    std::vector<std::vector<Piece>> buckets(nBuckets); 
-    buckets[0] = list;
+    std::vector<std::vector<Piece>> buckets(nBuckets); buckets[0] = list;
     std::vector<std::vector<Piece>> temp(nBuckets);
 
     for (int i = 0;; i++){
-        int nPowI = pow(nBuckets, i);
+        int nPowI = std::pow(nBuckets, i);
         if (nPowI > max-min) break;
 
         for (auto& bucket: buckets){
@@ -45,15 +50,19 @@ std::vector<Piece> radixSort(std::vector<Piece>& list, int nBuckets){
                 temp[index].push_back(value);
             }
         }
-        buckets = temp;
+        //faster to swap them, than to reassign
+        buckets.swap(temp);
+
         clearBuckets(temp);
     }
 
+    //moves everything from the buckets to the resulting list
     std::vector<Piece> result;
     for (auto& b: buckets){
         for (auto v: b){
             result.push_back(v);
         }
     }
+
     return result;
 }
