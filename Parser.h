@@ -4,9 +4,9 @@
 #include <iostream>
 #include "Piece.h"
 
-std::vector<Piece> parse_dataset(int count)
+std::vector<Piece> parseDataset(int count)
 {
-	int i, iter, index, unknown_count, quote_count, true_length, finished;
+	int i, iter, index, unknown_count, quoteCount, trueLength, finished;
 	std::string in, temp, piece, period, artist, medium;
 	std::ifstream dataset;
 	
@@ -18,8 +18,8 @@ std::vector<Piece> parse_dataset(int count)
 	for (i = 0; i < count; i++)
 	{
 		std::getline(dataset, in);
-		quote_count = 0;
-		true_length = 0;
+		quoteCount = 0;
+		trueLength = 0;
 		unknown_count = 0;
 		
 		
@@ -34,11 +34,11 @@ std::vector<Piece> parse_dataset(int count)
 		if (in.at(0) == '\"' && in.at(in.length()-1) == '\"' || in.at(0) == '(' && in.at(in.length()-1) == ')' ) continue;
 		
 		for (unsigned int j = 0; j < in.length(); j++) {
-			if (in.at(j) == '\"') quote_count++;
-			if (in.at(j) != '\"' && in.at(j) != ' ') true_length++;
+			if (in.at(j) == '\"') quoteCount++;
+			if (in.at(j) != '\"' && in.at(j) != ' ') trueLength++;
 		}
 	
-		if (quote_count % 2 == 1 || quote_count > 6 || true_length < 70) continue;
+		if (quoteCount % 2 == 1 || quoteCount > 6 || trueLength < 70) continue;
 		
 		iter = 1;
 		
