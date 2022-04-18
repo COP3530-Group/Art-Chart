@@ -128,77 +128,29 @@ ArtChart/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ArtChart.dir\build.make CMakeFiles/ArtChart.dir/build
 .PHONY : ArtChart/fast
 
-ArtChart.obj: ArtChart.cpp.obj
-.PHONY : ArtChart.obj
+AlexMain.obj: AlexMain.cpp.obj
+.PHONY : AlexMain.obj
 
 # target to build an object file
-ArtChart.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ArtChart.dir\build.make CMakeFiles/ArtChart.dir/ArtChart.cpp.obj
-.PHONY : ArtChart.cpp.obj
+AlexMain.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ArtChart.dir\build.make CMakeFiles/ArtChart.dir/AlexMain.cpp.obj
+.PHONY : AlexMain.cpp.obj
 
-ArtChart.i: ArtChart.cpp.i
-.PHONY : ArtChart.i
-
-# target to preprocess a source file
-ArtChart.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ArtChart.dir\build.make CMakeFiles/ArtChart.dir/ArtChart.cpp.i
-.PHONY : ArtChart.cpp.i
-
-ArtChart.s: ArtChart.cpp.s
-.PHONY : ArtChart.s
-
-# target to generate assembly for a file
-ArtChart.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ArtChart.dir\build.make CMakeFiles/ArtChart.dir/ArtChart.cpp.s
-.PHONY : ArtChart.cpp.s
-
-ArtDisplay.obj: ArtDisplay.cpp.obj
-.PHONY : ArtDisplay.obj
-
-# target to build an object file
-ArtDisplay.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ArtChart.dir\build.make CMakeFiles/ArtChart.dir/ArtDisplay.cpp.obj
-.PHONY : ArtDisplay.cpp.obj
-
-ArtDisplay.i: ArtDisplay.cpp.i
-.PHONY : ArtDisplay.i
+AlexMain.i: AlexMain.cpp.i
+.PHONY : AlexMain.i
 
 # target to preprocess a source file
-ArtDisplay.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ArtChart.dir\build.make CMakeFiles/ArtChart.dir/ArtDisplay.cpp.i
-.PHONY : ArtDisplay.cpp.i
+AlexMain.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ArtChart.dir\build.make CMakeFiles/ArtChart.dir/AlexMain.cpp.i
+.PHONY : AlexMain.cpp.i
 
-ArtDisplay.s: ArtDisplay.cpp.s
-.PHONY : ArtDisplay.s
-
-# target to generate assembly for a file
-ArtDisplay.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ArtChart.dir\build.make CMakeFiles/ArtChart.dir/ArtDisplay.cpp.s
-.PHONY : ArtDisplay.cpp.s
-
-HeapSort.obj: HeapSort.cpp.obj
-.PHONY : HeapSort.obj
-
-# target to build an object file
-HeapSort.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ArtChart.dir\build.make CMakeFiles/ArtChart.dir/HeapSort.cpp.obj
-.PHONY : HeapSort.cpp.obj
-
-HeapSort.i: HeapSort.cpp.i
-.PHONY : HeapSort.i
-
-# target to preprocess a source file
-HeapSort.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ArtChart.dir\build.make CMakeFiles/ArtChart.dir/HeapSort.cpp.i
-.PHONY : HeapSort.cpp.i
-
-HeapSort.s: HeapSort.cpp.s
-.PHONY : HeapSort.s
+AlexMain.s: AlexMain.cpp.s
+.PHONY : AlexMain.s
 
 # target to generate assembly for a file
-HeapSort.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ArtChart.dir\build.make CMakeFiles/ArtChart.dir/HeapSort.cpp.s
-.PHONY : HeapSort.cpp.s
+AlexMain.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ArtChart.dir\build.make CMakeFiles/ArtChart.dir/AlexMain.cpp.s
+.PHONY : AlexMain.cpp.s
 
 main.obj: main.cpp.obj
 .PHONY : main.obj
@@ -233,15 +185,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... ArtChart
-	@echo ... ArtChart.obj
-	@echo ... ArtChart.i
-	@echo ... ArtChart.s
-	@echo ... ArtDisplay.obj
-	@echo ... ArtDisplay.i
-	@echo ... ArtDisplay.s
-	@echo ... HeapSort.obj
-	@echo ... HeapSort.i
-	@echo ... HeapSort.s
+	@echo ... AlexMain.obj
+	@echo ... AlexMain.i
+	@echo ... AlexMain.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

@@ -1,3 +1,4 @@
+/*
 #include <chrono>
 #include "Parser.h"
 #include "SFML/Graphics.hpp"
@@ -368,3 +369,4 @@ int which_selected(int x, int y, int curr)
 	
 	return curr;
 }
+ */

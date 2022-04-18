@@ -1,6 +1,3 @@
-//
-// Created by Roland on 4/17/2022.
-//
 #pragma once
 #include <vector>
 #include "Piece.h"
@@ -13,7 +10,6 @@ int pow(int x, unsigned int p){
     if (p%2 == 0) return tmp * tmp;
     else return x * tmp * tmp;
 }
-
 
 void clearBuckets(std::vector<std::vector<Piece>>& bucket){
     for (auto& b: bucket){
