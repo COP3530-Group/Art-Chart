@@ -30,9 +30,11 @@ int main()
 
 	for (int i = 1; i < gallery2.size(); i++)
 	{
-		cout << gallery2[i].value << endl;
+		//cout << gallery2[i].value << endl;
+        gallery2[i].print();
 		if (gallery2[i].value < gallery[i - 1].value)
 		{
+            cout << "Previous value: " << gallery2[i-1].value << endl;
 			cout << "not sorted" << endl;
 			break;
 		}

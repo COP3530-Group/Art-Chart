@@ -6,6 +6,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/ArtChart.dir/AlexMain.cpp.obj.d"
   "CMakeFiles/ArtChart.dir/main.cpp.obj"
   "CMakeFiles/ArtChart.dir/main.cpp.obj.d"
+  "CMakeFiles/ArtChart.dir/test.cpp.obj"
+  "CMakeFiles/ArtChart.dir/test.cpp.obj.d"
   "libArtChart.dll.a"
 )
 

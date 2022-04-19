@@ -100,6 +100,9 @@
 		<Unit filename="C:/All Alex Files/Code/UF_DataStructures_HW/Art-Chart/main.cpp">
 			<Option target="ArtChart"/>
 		</Unit>
+		<Unit filename="C:/All Alex Files/Code/UF_DataStructures_HW/Art-Chart/test.cpp">
+			<Option target="ArtChart"/>
+		</Unit>
 		<Unit filename="C:/All Alex Files/Code/UF_DataStructures_HW/Art-Chart/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

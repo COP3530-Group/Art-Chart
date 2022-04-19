@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include <math.h>
 
 #define NAME_WEIGHT 1
 #define PERIOD_WEIGHT 1
@@ -12,6 +13,9 @@
 
 class Piece 
 {
+    private:
+        int hash(std::string input, int characterLimit);
+
 	public:
 		std::string timePeriod = "";
 		std::string medium = "";
@@ -36,9 +40,42 @@ Piece::Piece(std::string _piece_name, std::string _time_period, std::string _art
 	valueGen();
 }
 
+//26^characterLimit needs to be less than INT_MAX
+int Piece::hash(std::string s, int characterLimit = 5)
+{
+    int pieceValue = 0;
+    int size = 0;
+
+    if(s.size() == 0) return 0;
+
+    if(s.size() > characterLimit)
+        size = characterLimit;
+    else
+        size = s.size();
+
+    for(int i = 0; i < size; i++) //Closest character gets highest priority / exponent
+    {
+        int c = tolower(s[i]) - 96;
+        if(c > 0 && c < 26)
+            pieceValue += pow(c, size - i); //97 is the first value of a. I want a = 1.
+    }
+
+    return pieceValue;
+}
+
 void Piece::valueGen() 
 {
-	value = (pieceName.length()*NAME_WEIGHT) + (timePeriod.length()*PERIOD_WEIGHT) + (artistName.length()*ARTIST_WEIGHT) + (medium.length()*MEDIUM_WEIGHT) + (yearFinished*FINISHED_WEIGHT);
+    const int maxYearRange = 150000;
+    const int currentYear = 2100;
+    double yearPercentage = (double)(currentYear - yearFinished) / (maxYearRange); //(double)(yearFinished) / maxYearRange);
+    int yearValue = yearFinished + 1000000; //((int)(sqrt(yearPercentage) * 10000) % 1000) * 100000; //Flat buffer + range.
+
+    int nameValue = hash(pieceName, 5) * 0.0001;
+    int timeValue = hash(timePeriod, 5) * 0.00001;
+    int artistValue = hash(artistName, 5) * 0.00001;
+
+    value = yearValue + nameValue + timeValue + artistValue;
+	//value = (pieceName.length()*NAME_WEIGHT) + (timePeriod.length()*PERIOD_WEIGHT) + (artistName.length()*ARTIST_WEIGHT) + (medium.length()*MEDIUM_WEIGHT) + (yearFinished*FINISHED_WEIGHT);
 }
 
 void Piece::print()
