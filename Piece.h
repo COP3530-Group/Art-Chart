@@ -65,9 +65,6 @@ int Piece::hash(std::string s, int characterLimit = 5)
 
 void Piece::valueGen() 
 {
-    const int maxYearRange = 150000;
-    const int currentYear = 2100;
-    double yearPercentage = (double)(currentYear - yearFinished) / (maxYearRange); //(double)(yearFinished) / maxYearRange);
     int yearValue = yearFinished + 1000000; //((int)(sqrt(yearPercentage) * 10000) % 1000) * 100000; //Flat buffer + range.
 
     int nameValue = hash(pieceName, 5) * 0.0001;
