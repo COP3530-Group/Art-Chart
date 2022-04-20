@@ -1,4 +1,12 @@
+//
+// Created by Roland on 4/17/2022.
+//
+
+#ifndef ART_CHART_DISTANCETO_H
+#define ART_CHART_DISTANCETO_H
+
 #pragma once
+#include <vector>
 #include "Piece.h"
 
 int binarySearch(Piece piece, std::vector<Piece> list, int min, int max){
@@ -31,7 +39,7 @@ std::vector<Piece> sortByRelevance(Piece piece, std::vector<Piece>& list){
 
     while (true){
         bool canLeft = left >= 0;
-        bool canRight = right < list.size();
+        bool canRight = right < (int)list.size();
 
         if (canLeft && canRight){
             int lDist = dist(list[left].value, piece.value);
@@ -61,3 +69,5 @@ std::vector<Piece> sortByRelevance(Piece piece, std::vector<Piece>& list){
 
     return result;
 }
+
+#endif //ART_CHART_DISTANCETO_H

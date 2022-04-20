@@ -1,4 +1,6 @@
-#pragma once
+#ifndef ARTCHART_HEAPSORT_H
+#define ARTCHART_HEAPSORT_H
+
 #include <vector>
 #include "Piece.h"
 
@@ -95,3 +97,5 @@ std::vector<Piece> heapSort(std::vector<Piece> gallery)
 
     return sortedGallery;
 }
+
+#endif //ARTCHART_HEAPSORT_H

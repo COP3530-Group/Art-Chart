@@ -35,7 +35,7 @@ int main(int argc, char **argv)
 	
 	// Radix sort
 	auto rstart = std::chrono::high_resolution_clock::now();
-	gallery = radixSort(gallery, 10);
+	gallery = radixSort(gallery, 32);
 	auto rstop = std::chrono::high_resolution_clock::now();
 	auto rduration = std::chrono::duration_cast<std::chrono::microseconds>(rstop-rstart);
 	
@@ -112,8 +112,8 @@ void GUI(vector<Piece> & gallery, int rduration, int hduration)
 		text_box[i].setPosition((float)50, (float)250 + (120 * i));
 
 		userText[i].setFont(font);
-		userText[i].setFillColor(sf::Color(225, 225, 20, 255));
-		userText[i].setOutlineColor(sf::Color(225, 225, 20, 255));
+		userText[i].setFillColor(sf::Color(10, 255, 10, 255));
+		userText[i].setOutlineColor(sf::Color(10, 255, 10, 255));
 		userText[i].setPosition((float)55, (float)250 + (120 * i));
 	}
 	
@@ -196,6 +196,7 @@ void GUI(vector<Piece> & gallery, int rduration, int hduration)
 			if (count == 0)
 			{
 				// Using the search parameters, make an object with them to generate the corresponding
+
 				Piece p(userInput[0].toAnsiString(), userInput[1].toAnsiString(), userInput[2].toAnsiString(), userInput[4].toAnsiString(), stoi(userInput[3].toAnsiString()));
 
 				vector<Piece> relevant = sortByRelevance(p, gallery);
@@ -223,7 +224,7 @@ void GUI(vector<Piece> & gallery, int rduration, int hduration)
 		for (i = 0; i < 5; i++) 
 		{
 			text_box[i].setFillColor(sf::Color(255, 255, 255, 30));
-			if (i == selected) text_box[i].setFillColor(sf::Color(255, 255, 255, 120));
+			if (i == selected) text_box[i].setFillColor(sf::Color(255, 255, 255, 100));
 			window.draw(text_box[i]);
 			window.draw(userText[i]);
 		}

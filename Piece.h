@@ -37,7 +37,10 @@ Piece::Piece(std::string _piece_name, std::string _time_period, std::string _art
 	artistName = _artist_name;
 	medium = _medium;
 	yearFinished = _year_finished;
-	valueGen();
+	if (_piece_name == "" && _time_period == "" && _artist_name == "" && _medium == "")
+		value = _year_finished + 1000000;
+	else
+		valueGen();
 }
 
 //26^characterLimit needs to be less than INT_MAX
@@ -65,14 +68,14 @@ int Piece::hash(std::string s, int characterLimit = 5)
 
 void Piece::valueGen() 
 {
-    int yearValue = yearFinished + 1000000; //((int)(sqrt(yearPercentage) * 10000) % 1000) * 100000; //Flat buffer + range.
+    //int yearValue = yearFinished + 1000000; //((int)(sqrt(yearPercentage) * 10000) % 1000) * 100000; //Flat buffer + range.
 
-    int nameValue = hash(pieceName, 5) * 0.0001;
-    int timeValue = hash(timePeriod, 5) * 0.00001;
-    int artistValue = hash(artistName, 5) * 0.00001;
+	//int nameValue = 0; //hash(pieceName, 5) * 0.0001;
+	//int timeValue = 0; //hash(timePeriod, 5) * 0.00001;
+	//int artistValue = 0; //hash(artistName, 5) * 0.00001;
 
-    value = yearValue + nameValue + timeValue + artistValue;
-	//value = (pieceName.length()*NAME_WEIGHT) + (timePeriod.length()*PERIOD_WEIGHT) + (artistName.length()*ARTIST_WEIGHT) + (medium.length()*MEDIUM_WEIGHT) + (yearFinished*FINISHED_WEIGHT);
+    //value = yearValue + nameValue + timeValue + artistValue;
+	value = (pieceName.length()*NAME_WEIGHT) + (timePeriod.length()*PERIOD_WEIGHT) + (artistName.length()*ARTIST_WEIGHT) + (medium.length()*MEDIUM_WEIGHT) + (yearFinished*FINISHED_WEIGHT);
 }
 
 void Piece::print()
